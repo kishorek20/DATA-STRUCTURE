@@ -1,0 +1,48 @@
+#include <stdio.h>
+//Calculate array size
+#define ARRAY_SIZE(a)  sizeof(a)/sizeof(a[0])
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+// function to arrange odd and even numbers
+void arrangeOddAndEven(int arr[], const int n)
+{
+    int evenIndex = 0;
+    int oddIndex = 1;
+    while (1)
+    {
+        while (evenIndex < n && arr[evenIndex] % 2 == 0)
+        {
+            evenIndex += 2;
+        }
+        while (oddIndex < n && arr[oddIndex] % 2 == 1)
+        {
+            oddIndex += 2;
+        }
+        if (evenIndex < n && oddIndex < n)
+        {
+            swap(&arr[evenIndex],&arr[oddIndex]);
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+int main()
+{
+    int arr[] = {1, 6, 12, 3, 7, 8};
+    int i = 0;
+    //Get array size
+    const int N = ARRAY_SIZE(arr);
+    arrangeOddAndEven(arr, N);
+    printf("Array after segregation ");
+    for (i = 0; i < N; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
